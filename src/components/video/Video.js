@@ -54,10 +54,7 @@ const Video = ({ video }) => {
   }, [_videoId, views, duration]);
 
   useEffect(() => {
-    const get_channel_item = () => {
-      dispatch(getChannel(channelId));
-    };
-    if (!channelItem) get_channel_item();
+    if (!channelItem) dispatch(getChannel(channelId));
   }, [channelId, channelItem, dispatch]);
 
   const handleVideoClick = () => {

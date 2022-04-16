@@ -1,50 +1,80 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./_videoMetaData.scss";
 import moment from "moment";
 import numeral from "numeral";
 
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 import ShowMoreText from "react-show-more-text";
-const VideoMetaData = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { getChannel } from "../../redux/actions/channel.action";
+
+const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
+  const { channelId, channelTitle, description, title, publishedAt } = snippet;
+  const { viewCount, likeCount } = statistics;
+  const channelItem = useSelector((state) => state.channel[channelId]);
+  const channelIcon = channelItem?.data?.snippet.thumbnails.default;
+  const channelStats = channelItem?.data?.statistics.subscriberCount;
+
+  const dispatch = useDispatch();
+
+  const subscriptionStatus = false;
+
+  // const { snippet: channelSnippet, statistics: channelStatistics } =
+  //   useSelector((state) => state.channelDetails.channel);
+
+  // const subscriptionStatus = useSelector(
+  //   (state) => state.channelDetails.subscriptionStatus
+  // );
+
+  // useEffect(() => {
+  //    dispatch(getChannelDetails(channelId))
+  //    dispatch(checkSubscriptionStatus(channelId))
+  // }, [dispatch, channelId])
+
+  useEffect(() => {
+    if (!channelItem) dispatch(getChannel(channelId));
+  }, [channelId, channelItem, dispatch]);
+
   return (
     <div className="videoMetaData py-2">
       <div className="videoMetaData__top">
-        <h5>Video Title</h5>
+        <h5>{title}</h5>
         <div className="d-flex justify-content-between align-items-center py-1">
           <span>
-            {numeral(10000).format("0 a").replace("m", "M")} Views •
-            {moment("2021-06-6").fromNow()}
+            {numeral(viewCount).format("0 a").replace("m", "M")} Views •{" "}
+            {moment(publishedAt).fromNow()}
           </span>
 
           <div>
             <span className="mr-3">
-              <MdThumbUp size={26} />
-              {numeral(10000).format("0 a").replace("m", "M")}
+              <MdThumbUp size={26} />{" "}
+              {numeral(likeCount).format("0 a").replace("m", "M")}
             </span>
             <span className="mr-3">
               <MdThumbDown size={26} />
-              {numeral(100).format("0 a").replace("m", "M")}
+              {/* {numeral(100).format("0 a").replace("m", "M")} */}
             </span>
           </div>
         </div>
       </div>
       <div className="videoMetaData__channel d-flex justify-content-between align-items-center my-2 py-3">
         <div className="d-flex">
-          <img
-            src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
-            alt=""
-            className="rounder-circle mr-3"
-          />
+          <img src={channelIcon?.url} alt="" className="mr-3 rounded-circle" />
           <div className="d-flex flex-column">
-            <span>Backbench Coder</span>
+            <span>{channelTitle}</span>
             <span>
               {" "}
-              {numeral(10000).format("0 a").replace("m", "M")} Subscribers
+              {numeral(channelStats).format("0 a").replace("m", "M")}{" "}
+              Subscribers
             </span>
           </div>
         </div>
 
-        <button className="btn border-0 p-2 m-2">Subscribe</button>
+        <button
+          className={`p-2 m-2 border-0 btn ${subscriptionStatus && "btn-gray"}`}
+        >
+          {subscriptionStatus ? "Subscribed" : "Subscribe"}
+        </button>
       </div>
       <div className="videoMetaData__description">
         <ShowMoreText
@@ -54,21 +84,7 @@ const VideoMetaData = () => {
           anchorClass="showMoreText"
           expanded={false}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          cupiditate, aspernatur a modi, nostrum porro suscipit vero est ratione
-          pariatur eos atque dignissimos tempora autem corporis officia optio,
-          distinctio nisi in id? Eaque consectetur, quas quaerat magni dicta qui
-          non? Quod fugit inventore rem porro quis, error quos qui nulla! Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          cupiditate, aspernatur a modi, nostrum porro suscipit vero est ratione
-          pariatur eos atque dignissimos tempora autem corporis officia optio,
-          distinctio nisi in id? Eaque consectetur, quas quaerat magni dicta qui
-          non? Quod fugit inventore rem porro quis, error quos qui nulla! Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          cupiditate, aspernatur a modi, nostrum porro suscipit vero est ratione
-          pariatur eos atque dignissimos tempora autem corporis officia optio,
-          distinctio nisi in id? Eaque consectetur, quas quaerat magni dicta qui
-          non? Quod fugit inventore rem porro quis, error quos qui nulla!
+          {description}
         </ShowMoreText>
       </div>
     </div>

@@ -1,9 +1,6 @@
 // Pour le dev
 // Pour ne pas appeler l'API de trop nombreuses fois et dépasser le quota
 
-// 20220415120007
-// https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=FR&maxResults=20&key=AIzaSyC0ObYO_yxgMXEeOUohEnZGqDvQRXL3JuI
-
 export const apiData = {
   kind: "youtube#videoListResponse",
   etag: "opeRD5oY51-npUE7sL65WSfSiLY",

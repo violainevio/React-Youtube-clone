@@ -21,25 +21,26 @@
    &__duration {
       position: absolute;
 
-      bottom: 0.3rem;
-      right: 0.3rem;
+      bottom: 6px;
+      right: 15px;
 
-      padding: 0.2rem;
+      font-size: 0.75rem;
+      padding: 0px 5px;
       background: #080808ec;
       border-radius: 3px;
    }
 
    &__details {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
    }
 
    &__title {
-      font-size: 1rem;
+      font-size: 0.9rem;
 
-      color: #fff;
+      // color: #fff;
       letter-spacing: 0.3px;
 
-      @include line-clamp(1);
+      @include line-clamp(2);
    }
 
    &__channel {
@@ -51,8 +52,9 @@
          margin-right: 0.5rem;
          cursor: pointer;
       }
+
       p {
-         font-size: 0.9rem;
+         font-size: 0.8rem;
          @include line-clamp(1);
       }
    }
@@ -65,12 +67,14 @@
       &__details {
          @include line-clamp(1);
       }
+
       &__channel {
          margin: 0.1rem 0;
 
          img {
             display: none;
          }
+
          p {
             font-size: 0.9rem;
          }
@@ -81,7 +85,7 @@
       //   }
 
       &__title {
-         font-size: 1rem;
+         font-size: 0.9rem;
          @include line-clamp(2);
       }
    }
