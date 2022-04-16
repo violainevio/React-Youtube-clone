@@ -73,6 +73,7 @@ const VideoHorizontal = ({ video }) => {
     .utc(seconds * 1000)
     .format(seconds > 60 * 60 ? "h:mm:ss" : "m:ss");
   const navigate = useNavigate();
+
   const handleClick = () => {
     // TODO handle channel click
     navigate(`/watch/${id.videoId}`);
