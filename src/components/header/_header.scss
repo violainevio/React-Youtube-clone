@@ -12,10 +12,15 @@
    height: 10vh;
    width: 100%;
 
+   position: fixed;
+   top: 0;
+
    z-index: 999;
+
    &__menu {
       display: none;
    }
+
    &__logo {
       width: 30px;
       height: 30px;
@@ -50,6 +55,7 @@
          color: $text-color;
          background: transparent;
          border: none;
+
          &:focus {
             border: none;
          }
@@ -61,6 +67,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+
       img {
          border-radius: 50%;
          width: 40px;
@@ -81,11 +88,12 @@
       &__menu {
          display: block;
       }
+
       &__logo {
          display: none;
       }
 
-      &__icons > *:not(img) {
+      &__icons>*:not(img) {
          display: none;
       }
    }

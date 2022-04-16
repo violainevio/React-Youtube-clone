@@ -5,23 +5,25 @@
    padding: 0.7rem;
 
    font-weight: 500;
-   font-size: 0.9rem;
+   font-size: 0.8rem;
 
    cursor: pointer;
 
    &__top {
       margin-bottom: 0.5rem;
       position: relative;
+
       img {
          width: 100%;
       }
+
       span {
          position: absolute;
 
          bottom: 0.3rem;
          right: 0.3rem;
 
-         padding: 0.2rem;
+         padding: 0px 5px;
          background: #080808ec;
          border-radius: 3px;
       }
@@ -38,6 +40,7 @@
       display: flex;
       align-items: center;
    }
+
    &__channel {
       display: flex;
       align-items: center;
@@ -51,6 +54,7 @@
          margin-right: 0.5rem;
          cursor: pointer;
       }
+
       p {
          margin-bottom: 0;
       }

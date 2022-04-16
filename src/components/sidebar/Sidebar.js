@@ -1,59 +1,69 @@
-import React from "react"
-import "./_sidebar.scss"
+import React from "react";
+import "./_sidebar.scss";
 
 import {
-   MdSubscriptions,
-   MdExitToApp,
-   MdThumbUp,
-   MdHistory,
-   MdLibraryBooks,
-   MdHome,
-   MdSentimentDissatisfied,
-} from "react-icons/md"
+  MdSubscriptions,
+  MdExitToApp,
+  MdThumbUp,
+  MdHistory,
+  MdLibraryBooks,
+  MdHome,
+  MdSentimentDissatisfied,
+} from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { log_out } from "../../redux/actions/auth.action";
+import { NavLink } from "react-bootstrap";
 
 const Sidebar = ({ sidebar, handleToggleSidebar }) => {
-   return (
-      <nav
-         className={sidebar ? "sidebar open" : "sidebar"}
-         onClick={() => handleToggleSidebar(false)}>
-         <li>
-            <MdHome size={23} />
-            <span>Home</span>
-         </li>
-         <li>
-            <MdSubscriptions size={23} />
-            <span>Subscriptions</span>
-         </li>
+  const dispatch = useDispatch();
+  const logOutHandler = () => {
+    dispatch(log_out());
+  };
+  return (
+    <nav
+      className={sidebar ? "sidebar open" : "sidebar"}
+      onClick={() => handleToggleSidebar(false)}
+    >
+      <li>
+        <MdHome size={23} />
+        <span>
+          <NavLink to="/">Home</NavLink>
+        </span>
+      </li>
+      <li>
+        <MdSubscriptions size={23} />
+        <span>Subscriptions</span>
+      </li>
 
-         <li>
-            <MdThumbUp size={23} />
-            <span>Liked Video</span>
-         </li>
+      <li>
+        <MdThumbUp size={23} />
+        <span>Liked Video</span>
+      </li>
 
-         <li>
-            <MdHistory size={23} />
-            <span>History</span>
-         </li>
+      <li>
+        <MdHistory size={23} />
+        <span>History</span>
+      </li>
 
-         <li>
-            <MdLibraryBooks size={23} />
-            <span>Library</span>
-         </li>
-         <li>
-            <MdSentimentDissatisfied size={23} />
-            <span>I don't Know</span>
-         </li>
+      <li>
+        <MdLibraryBooks size={23} />
+        <span>Library</span>
+      </li>
+      <li>
+        <MdSentimentDissatisfied size={23} />
+        <span>I don't Know</span>
+      </li>
 
-         <hr />
+      <hr />
 
-         <li>
-            <MdExitToApp size={23} />
-            <span>Log Out</span>
-         </li>
+      <li onClick={logOutHandler}>
+        <MdExitToApp size={23} />
+        <span>Log Out</span>
+      </li>
 
-         <hr />
-      </nav>
-   )
-}
+      <hr />
+    </nav>
+  );
+};
 
-export default Sidebar
+export default Sidebar;
